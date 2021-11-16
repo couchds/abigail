@@ -1,2 +1,6 @@
 *.pyc
 logs/
+
+db/logs/
+db/neo4j/
+db/plugins/
