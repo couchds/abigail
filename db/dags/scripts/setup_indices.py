@@ -10,11 +10,11 @@ INDICES = [
     },
     {
         'node_label': 'Gene',
-        'property': 'uid'
+        'property': 'name'
     },
     {
         'node_label': 'Disease',
-        'property': 'uid'
+        'property': 'name'
     }
 ]
 
@@ -23,7 +23,6 @@ def create_index_query(node_type, indexed_property):
     """ Create the query for the index statement. See:
     https://neo4j.com/docs/cypher-manual/current/indexes-for-search-performance/
     """
-    print('here!!')
     print(f'CREATE INDEX ON :{node_type}({indexed_property});')
     return f'CREATE INDEX ON :{node_type}({indexed_property});'
 
