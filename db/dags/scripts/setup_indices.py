@@ -15,6 +15,10 @@ INDICES = [
     {
         'node_label': 'Disease',
         'property': 'name'
+    },
+    {
+        'node_label': 'Synonym',
+        'property': 'name'
     }
 ]
 
