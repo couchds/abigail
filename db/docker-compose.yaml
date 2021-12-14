@@ -267,7 +267,8 @@ services:
         condition: service_completed_successfully
 
   neo4j:
-    image: neo4j:4.3.7
+    build:
+      context: './dockerfiles/neo4j'
     hostname: neo4j
     container_name: neo4j
     ports:
@@ -276,6 +277,7 @@ services:
     volumes:
       - ./neo4j/plugins:/plugins
       - ./neo4j/data:/data
+      - .\neo4j\import:/var/lib/import
     environment:
       NEO4J_AUTH: neo4j/tmppassword # tmp
       NEO4J_dbms_logs_debug_level: DEBUG
