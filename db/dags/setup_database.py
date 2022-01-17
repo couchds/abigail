@@ -1,6 +1,6 @@
 import datetime as dt
 
-from scripts import setup_indices, setup_genes
+from scripts import setup_indices, setup_genes, setup_diseases
 
 from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
@@ -44,7 +44,7 @@ with DAG('setup_database',
     sleep = BashOperator(task_id='sleep3',
                          bash_command='sleep 5')
     setup_disease_operator = PythonOperator(task_id='setup_disease',
-                                 python_callable=setup_disease)
+                                 python_callable=setup_diseases.setup_diseases)
     sleep = BashOperator(task_id='sleep4',
                          bash_command='sleep 5')
     setup_efetch_operator = PythonOperator(task_id='setup_efetch',
