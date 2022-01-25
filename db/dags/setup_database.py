@@ -1,19 +1,10 @@
 import datetime as dt
 
-from scripts import setup_indices, setup_genes, setup_diseases
+from scripts import setup_diseases, setup_indices, setup_genes, setup_gos
 
 from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
 from airflow.operators.python_operator import PythonOperator
-
-def setup_go():
-    print('Setting up GO nodes in database...')
-
-def setup_gene():
-    print('Setting up gene nodes in database...')
-
-def setup_disease():
-    print('Setting up disease nodes in database...')
 
 def setup_efetch():
     print('Performing eFetch search...')
@@ -36,7 +27,7 @@ with DAG('setup_database',
     sleep = BashOperator(task_id='sleep1',
                          bash_command='sleep 5')
     setup_go_operator = PythonOperator(task_id='setup_go',
-                                 python_callable=setup_go)
+                                 python_callable=setup_gos.setup_gos)
     sleep = BashOperator(task_id='sleep2',
                          bash_command='sleep 5')
     setup_gene_operator = PythonOperator(task_id='setup_gene',
