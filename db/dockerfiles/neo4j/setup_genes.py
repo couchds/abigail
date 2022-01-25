@@ -15,3 +15,5 @@ def setup_genes():
     driver = GraphDatabase.driver(URI, auth=("neo4j", "tmppassword"), encrypted=False) # encrypted set to false for localhost
     with driver.session() as session:
         session.run(query)
+
+setup_genes()
