@@ -6,7 +6,7 @@ URI = 'neo4j://neo4j:7687' # use the neo4j container
 INDICES = [
     {
         'node_label': 'GO',
-        'property': 'uid'
+        'property': 'name'
     },
     {
         'node_label': 'Gene',
