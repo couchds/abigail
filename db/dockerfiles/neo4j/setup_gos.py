@@ -9,8 +9,9 @@ def setup_gos():
         WITH row  WHERE row.name IS NOT NULL AND row.synonyms IS NOT NULL
         MERGE (g:GO {uid: row.id, name: row.name, namespace: row.namespace, definition: row.definition})
         WITH g, row
-        UNWIND split(row.synonyms, ",") as synonym
+        UNWIND split(row.synonyms, "&&") as synonym
         MERGE (s: Synonym {name: synonym})
+        MERGE (g)-[:has_synonym]->(s)
     '''
    # WITH g, SPLIT(row.synonyms, ",") AS go_synonyms
     # WITH g, SPLIT(row[4], ",") AS go_synonyms

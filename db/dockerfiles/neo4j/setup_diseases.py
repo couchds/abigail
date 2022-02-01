@@ -5,9 +5,9 @@ URI = 'neo4j://neo4j:7687'
 def setup_diseases():
     query = '''
         USING PERIODIC COMMIT 
-        LOAD CSV FROM 'file:///doid.tsv' AS row FIELDTERMINATOR '\t' with row where row[2] is not null
-        MERGE (d:Disease {uid: row[0], name: row[1], definition: row[2]})
-        WITH d, SPLIT(row[3], ",") AS disease_synonyms
+        LOAD CSV WITH HEADERS FROM 'file:///doid.tsv' AS row FIELDTERMINATOR '\t' with row where row.definition is not null
+        MERGE (d:Disease {uid: row.id, name: row.name, definition: row.definition})
+        WITH d, SPLIT(row.synonyms, "&&") AS disease_synonyms
         UNWIND disease_synonyms as disease_synonym
         MERGE (s: Synonym {name: disease_synonym})
         MERGE (d)-[:has_synonym]->(s)

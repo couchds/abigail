@@ -5,7 +5,7 @@ RUN apt-get install -y python3
 RUN apt-get install -y pip
 RUN pip install neo4j-driver
 
-COPY ./data/hgnc-extract-12-13-2021.txt /var/lib/neo4j/import
+COPY ./data/gene_output.tsv /var/lib/neo4j/import
 COPY ./data/doid.tsv /var/lib/neo4j/import
 COPY ./data/go-basic.tsv /var/lib/neo4j/import
 
