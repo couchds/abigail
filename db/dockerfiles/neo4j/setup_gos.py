@@ -13,14 +13,6 @@ def setup_gos():
         MERGE (s: Synonym {name: synonym})
         MERGE (g)-[:has_synonym]->(s)
     '''
-   # WITH g, SPLIT(row.synonyms, ",") AS go_synonyms
-    # WITH g, SPLIT(row[4], ",") AS go_synonyms
-    #    UNWIND go_synonyms as go_synonym
-    #    MERGE (s: Synonym {name: go_synonym})
-    #    MERGE (g)-[:has_synonym]->(s)
-    #
-    #with open('')
-    print('here!')
     driver = GraphDatabase.driver(URI, auth=("neo4j", "tmppassword"), encrypted=False) # encrypted set to false for localhost
     with driver.session() as session:
         session.run(query)
