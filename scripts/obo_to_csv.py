@@ -54,7 +54,7 @@ def perform_write_row(file_name, wrow, synonyms):
     @synonyms (list): The synonyms for the node
     """
     with open(file_name, 'a') as outfile:
-        outfile.write('\t'.join(wrow)+'\t'+','.join(synonyms)+'\n')
+        outfile.write('\t'.join(wrow)+'\t'+'&&'.join(synonyms)+'\n')
 
 def convert_obo_to_csv(infile, outfile_name):
     """ Convert an OBO file to a CSV file.
