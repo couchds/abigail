@@ -8,6 +8,8 @@ def setup_gos():
         LOAD CSV WITH HEADERS FROM 'file:///go-basic.tsv' AS row FIELDTERMINATOR '\t' 
         WITH row  WHERE row.name IS NOT NULL AND row.synonyms IS NOT NULL
         MERGE (g:GO {uid: row.id, name: row.name, namespace: row.namespace, definition: row.definition})
+        MERGE (s1: Synonym {name: row.name})
+        MERGE (g)-[:has_synonym]->(s1)
         WITH g, row
         UNWIND split(row.synonyms, "&&") as synonym
         MERGE (s: Synonym {name: synonym})
