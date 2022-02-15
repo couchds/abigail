@@ -114,3 +114,7 @@
     flex-direction: column;
   }
 }
+
+#abigail-header {
+  color: white !important;
+}
